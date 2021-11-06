@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="570.0" prefWidth="1126.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseline.ToDoListController">
+   <children>
+      <SplitPane dividerPositions="0.13556338028169015, 0.24471830985915494, 0.9084507042253521" orientation="VERTICAL" prefHeight="570.0" prefWidth="1126.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Label alignment="TOP_CENTER" layoutX="460.0" layoutY="-2.0" prefHeight="65.0" prefWidth="205.0" text="To-Do List">
+                     <font>
+                        <Font size="42.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="394.0" prefWidth="1025.0">
+               <children>
+                  <TextField fx:id="inputDescription" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="531.0" promptText="Enter a description:" />
+                  <DatePicker fx:id="inputDueDate" layoutX="573.0" layoutY="14.0" promptText="Due Date:" />
+                  <RadioButton fx:id="inputCompleted" layoutX="786.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Complete">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="isCompletedGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="inputIncompleted" layoutX="889.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" selected="true" text="Incomplete" toggleGroup="$isCompletedGroup" />
+                  <Button fx:id="inputAddItem" layoutX="997.0" layoutY="14.0" mnemonicParsing="false" onAction="#addItemPressed" prefHeight="25.0" prefWidth="100.0" text="Add Item" />
+               </children>
+            </AnchorPane>
+            <TableView prefHeight="200.0" prefWidth="200.0">
+              <columns>
+                <TableColumn fx:id="descriptionColumn" prefWidth="734.0" text="Description" />
+                <TableColumn fx:id="dueDateColumn" minWidth="0.0" prefWidth="230.0" text="Due Date" />
+                  <TableColumn fx:id="completedQMarkColumn" prefWidth="160.0" text="Completed?" />
+              </columns>
+            </TableView>
+            <AnchorPane prefHeight="127.0" prefWidth="1124.0">
+               <children>
+                  <RadioButton fx:id="inputShowAll" layoutX="21.0" layoutY="12.0" mnemonicParsing="false" onAction="#showAllPressed" prefHeight="25.0" prefWidth="100.0" selected="true" text="Show all items">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="showItemsGroup" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="inputShowCompleted" layoutX="146.0" layoutY="12.0" mnemonicParsing="false" onAction="#showCompletedPressed" prefHeight="25.0" prefWidth="151.0" text="Show completed items" toggleGroup="$showItemsGroup" />
+                  <RadioButton fx:id="inputShowIncompleted" layoutX="312.0" layoutY="12.0" mnemonicParsing="false" onAction="#showIncompletedPressed" prefHeight="25.0" prefWidth="161.0" text="Show incompleted items" toggleGroup="$showItemsGroup" />
+                  <Button fx:id="inputEditItem" layoutX="498.0" layoutY="12.0" mnemonicParsing="false" onAction="#editItemPressed" prefHeight="25.0" prefWidth="100.0" text="Edit item" />
+                  <Button fx:id="inputDeleteItem" layoutX="611.0" layoutY="12.0" mnemonicParsing="false" onAction="#deleteItemPress" prefHeight="25.0" prefWidth="100.0" text="Delete item" />
+                  <Button fx:id="inputSaveList" layoutX="862.0" layoutY="12.0" mnemonicParsing="false" onAction="#saveListPressed" prefHeight="25.0" prefWidth="116.0" text="Save List" />
+                  <Button fx:id="inputLoadList" layoutX="994.0" layoutY="12.0" mnemonicParsing="false" onAction="#loadListPressed" prefHeight="25.0" prefWidth="116.0" text="Load List" />
+                  <Button fx:id="inputDeleteAllItems" layoutX="726.0" layoutY="12.0" mnemonicParsing="false" onAction="#deleteAllItemsPressed" prefHeight="25.0" prefWidth="100.0" text="Delete all items" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="56.0" prefWidth="1192.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseline.EditItemController">
+   <children>
+      <TextField fx:id="inputDescriptionEdit" layoutX="14.0" layoutY="16.0" prefHeight="25.0" prefWidth="531.0" promptText="Enter a description:" />
+      <DatePicker fx:id="inputDueDateEdit" layoutX="563.0" layoutY="16.0" promptText="Due Date:" />
+      <RadioButton fx:id="inputCompletedEdit" layoutX="760.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Complete">
+         <toggleGroup>
+            <ToggleGroup fx:id="isCompletedGroupEdit" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="inputIncompletedEdit" layoutX="851.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="86.0" text="Incomplete" toggleGroup="$isCompletedGroupEdit" />
+      <Button fx:id="inputEditItem" layoutX="957.0" layoutY="16.0" mnemonicParsing="false" onAction="#editItemPressed" prefHeight="25.0" prefWidth="100.0" text="Edit Item" />
+      <Button fx:id="inputCancelEdit" layoutX="1073.0" layoutY="16.0" mnemonicParsing="false" onAction="#cancelEditPressed" prefHeight="25.0" prefWidth="100.0" text="Cancel Edit" />
+   </children>
+</AnchorPane>

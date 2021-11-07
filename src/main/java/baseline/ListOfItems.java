@@ -28,6 +28,11 @@ public class ListOfItems {
         return output;
     }
 
+    public ObservableList<Item> showAllItems(ObservableList<Item> list){
+        //  Returns the list since that has all the items
+        return list;
+    }
+
     public ObservableList<Item> showCompletedItems(ObservableList<Item> list){
         //  Adds only the completed items on the list and return that list
         ObservableList<Item> completedItems = FXCollections.observableArrayList();
@@ -95,7 +100,7 @@ public class ListOfItems {
         fr.scanInputFile(list, inputFile);
     }
 
-    private String writeSaveFile(ObservableList<Item> list){
+    public String writeSaveFile(ObservableList<Item> list){
         //  Takes each item in the list then converts it into a string to print to a file.txt for
         //  the user to load in next time
         StringBuilder output = new StringBuilder("");

@@ -121,6 +121,7 @@ class Item {
 class ListOfItems {
     'Methods
     +addItemToList(ObservableList<Item>, String, String, String): boolean output
+    +showAllItems(ObservableList<Item>): ObservableList<Item> output
     +showCompletedItems(ObservableList<Item>): ObservableList<Item> output
     +showIncompletedItems(ObservableList<Item>): ObservableList<Item> output
     +editItemInList(Item, String, String, String): boolean output
@@ -128,7 +129,7 @@ class ListOfItems {
     +deleteAllItems(ObservableList<Item>)
     +saveListFile(ObservableList<Item>, File)
     +loadSaveFile(ObservableList<Item>, File)
-    -writeSaveFile(ObservableList<Item>):String output
+    +writeSaveFile(ObservableList<Item>):String output
 }
 
 class MyFileReader {

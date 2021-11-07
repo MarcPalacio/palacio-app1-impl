@@ -27,7 +27,7 @@ class Application1Test {
 
         //  Creates a new list and adds an element to that list, but the due date is blank, which is allowed
         ObservableList<Item> actual = FXCollections.observableArrayList();
-        //  Will be true if the due is invalid
+        //  Will be true if the due date is invalid
         boolean isInvalidDueDate = helper.addItemToList(actual, "Test Application 1", "", "Incomplete");
 
         assertFalse(isInvalidDueDate);

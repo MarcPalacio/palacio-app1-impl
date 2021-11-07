@@ -53,7 +53,7 @@
                      </toggleGroup>
                   </RadioButton>
                   <RadioButton fx:id="inputShowCompleted" layoutX="146.0" layoutY="12.0" mnemonicParsing="false" onAction="#showCompletedPressed" prefHeight="25.0" prefWidth="151.0" text="Show completed items" toggleGroup="$showItemsGroup" />
-                  <RadioButton fx:id="inputShowIncompleted" layoutX="312.0" layoutY="12.0" mnemonicParsing="false" onAction="#showIncompletedPressed" prefHeight="25.0" prefWidth="161.0" text="Show incompleted items" toggleGroup="$showItemsGroup" />
+                  <RadioButton fx:id="inputShowIncompleted" layoutX="312.0" layoutY="12.0" mnemonicParsing="false" onAction="#showIncompletedPressed" prefHeight="25.0" prefWidth="161.0" text="Show incomplete items" toggleGroup="$showItemsGroup" />
                   <Button fx:id="inputEditItem" layoutX="498.0" layoutY="12.0" mnemonicParsing="false" onAction="#editItemPressed" prefHeight="25.0" prefWidth="100.0" text="Edit item" />
                   <Button fx:id="inputDeleteItem" layoutX="611.0" layoutY="12.0" mnemonicParsing="false" onAction="#deleteItemPress" prefHeight="25.0" prefWidth="100.0" text="Delete item" />
                   <Button fx:id="inputSaveList" layoutX="862.0" layoutY="12.0" mnemonicParsing="false" onAction="#saveListPressed" prefHeight="25.0" prefWidth="116.0" text="Save List" />

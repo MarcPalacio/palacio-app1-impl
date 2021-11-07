@@ -6,39 +6,50 @@
 package baseline;
 
 public class Item {
-    // Attributes of Item Class
+    //  Attributes of Item Class
     private String description;
     private String date;
-    private boolean isCompleted;
+    private String status;
 
-    public Item(String description, String date, boolean isCompleted){
-        // Calls setters to assign data
+    public Item(String description, String date, String status){
+        //  Calls setters to assign data
+        setDescription(description);
+        setDate(date);
+        setCompleted(status);
     }
 
     public void setDescription(String description) {
-        // Sets the description of the item
+        //  Sets the description of the item
+        this.description = description;
     }
 
     public void setDate(String date) {
-        // Sets the due date of the item (Date can be empty)
+        //  Sets the due date of the item (Date can be empty)
+        this.date = date;
     }
 
-    public void setCompleted(boolean isCompleted) {
-        // Sets if the item is completed or not
+    public void setCompleted(String status) {
+        //  Sets if the item is completed or not
+        this.status = status;
     }
 
     public String getDescription() {
-        // Returns the description of the item
-        return "";
+        //  Returns the description of the item
+        return description;
     }
 
     public String getDate() {
-        // Returns the due date of the item
-        return "";
+        //  Returns the due date of the item
+        return date;
     }
 
-    public boolean getCompleted() {
-        // Returns if the item is completed or not
-        return false;
+    public String getStatus() {
+        //  Returns if the item is completed or not
+        return status;
+    }
+
+    @Override
+    public String toString(){
+        return description + "<>" + date + "<>" + status;
     }
 }

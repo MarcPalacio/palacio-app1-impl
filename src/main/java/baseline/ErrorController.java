@@ -40,5 +40,4 @@ public class ErrorController {
         //  Goes back to the ToDoList scene after the user sees the error they made
         goListScene(event);
     }
-
 }

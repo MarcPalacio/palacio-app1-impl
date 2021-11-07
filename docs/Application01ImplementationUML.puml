@@ -1,0 +1,153 @@
+@startuml
+class TodoListApplication extends Application {
+    'Methods
+    +main(String)
+    +start(Stage)
+}
+
+class ToDoListController implements Initializable {
+    'FXML elements
+     -inputDeleteItem: Button
+     -itemTable: TableView<Item>
+     -statusColumn: TableColumn<Item, String>
+     -descriptionColumn: TableColumn<Item, String>
+     -dueDateColumn: TableColumn<Item, String>
+     -inputAddItem: Button
+     -inputCompleted: RadioButton
+     -inputDeleteAllItems: Button
+     -inputDescription: TextField
+     -inputDueDate: DatePicker
+     -inputEditItem: Button
+     -inputIncompleted: RadioButton
+     -inputLoadList: Button
+     -inputSaveList: Button
+     -inputShowAll: RadioButton
+     -inputShowCompleted: RadioButton
+     -inputShowIncompleted: RadioButton
+     -isCompletedGroup: ToggleGroup
+     -showItemsGroup: ToggleGroup
+
+    'Attributes
+    +listOfItems: ObservableList<Item>
+    -errorScene: Scene
+    -editScene: Scene
+    -editController: FXMLLoader
+
+    'Methods
+    +initialize(URL, ResourceBundle)
+    +setErrorScene(Scene)
+    +goErrorScene(ActionEvent)
+    +setEditScene(Scene)
+    +goEditScene(ActionEvent)
+    +getEditControllerInfo(FXMLLoader)
+    +addItemPressed(ActionEvent)
+    +deleteAllItemsPressed(ActionEvent)
+    +deleteItemPress(ActionEvent)
+    +editItemPressed(ActionEvent)
+    +loadListPressed(ActionEvent)
+    +saveListPressed(ActionEvent)
+    +showAllPressed(ActionEvent)
+    +showCompletedPressed(ActionEvent)
+    +showIncompletedPressed(ActionEvent)
+    +setItemList(ObservableList<Item>)
+}
+
+class EditItemController{
+    'FXML elements
+    -inputEditItem: Button
+    -inputCancelEdit: Button
+    -inputCompletedEdit: RadioButton
+    -inputDescriptionEdit: TextField
+    -inputDueDateEdit: DatePicker
+    -inputIncompletedEdit: RadioButton
+    -isCompletedGroupEdit: ToggleGroup
+
+    'Attributes
+    +listOfItems: ObservableList<Item>
+    -index: int
+    -listScene: Scene
+    -errorScene: Scene
+    -toDoController: FXMLLoader
+
+    'Methods
+    +setListScene(Scene )
+    +goListScene(ActionEvent)
+    +getToDoControllerInfo(FXMLLoader)
+    +setErrorScene(Scene)
+    +goErrorScene(ActionEvent)
+    +editItemPressed(ActionEvent)
+    +cancelEditPressed(ActionEvent)
+    +setTextInput(String)
+    +setItemList(ObservableList<Item>)
+    +setIndex(int)
+    +setStatus(String)
+}
+
+class ErrorController {
+    'FXML Elements
+    -labelError: Label
+    -nextButton: Button
+
+    'Attributes
+    -listScene: Scene
+
+    'Methods
+    +setListScene(Scene)
+    +goListScene(ActionEvent)
+    +nextButtonPressed(ActionEvent event)
+}
+
+class Item {
+    'Attributes
+    -String description;
+    -String date;
+    -String status;
+
+    'Methods
+    'Constructor
+    +Item(String, String, String)
+    'Setters
+    +setDescription(String)
+    +setDate(String)
+    +setCompleted(String)
+    'Getters
+    +getDescription(): String output
+    +getDate(): String output
+    +getStatus(): String output
+    'toString
+    +toString(): String output
+}
+
+class ListOfItems {
+    'Methods
+    +addItemToList(ObservableList<Item>, String, String, String): boolean output
+    +showCompletedItems(ObservableList<Item>): ObservableList<Item> output
+    +showIncompletedItems(ObservableList<Item>): ObservableList<Item> output
+    +editItemInList(Item, String, String, String): boolean output
+    +deleteItemInList(ObservableList<Item>, int)
+    +saveListFile(ObservableList<Item>, File)
+    +loadSaveFile(ObservableList<Item>, File)
+    -writeSaveFile(ObservableList<Item>):String output
+}
+
+class MyFileReader {
+    'Methods
+    +scanInputFile(ObservableList<Item>, File)
+}
+
+class MyFileWriter {
+    +writeToFile(String, File)
+}
+
+TodoListApplication -- ToDoListController
+TodoListApplication -- EditItemController
+TodoListApplication -- ErrorController
+ToDoListController -- EditItemController
+
+ToDoListController -- ListOfItems
+ToDoListController -- Item
+
+ListOfItems -- Item
+ListOfItems -- MyFileReader
+ListOfItems -- MyFileWriter
+@enduml

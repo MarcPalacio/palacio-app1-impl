@@ -11,7 +11,7 @@
 <AnchorPane prefHeight="56.0" prefWidth="1192.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseline.EditItemController">
    <children>
       <TextField fx:id="inputDescriptionEdit" layoutX="14.0" layoutY="16.0" prefHeight="25.0" prefWidth="531.0" promptText="Enter a description:" />
-      <DatePicker fx:id="inputDueDateEdit" layoutX="563.0" layoutY="16.0" promptText="Due Date:" />
+      <DatePicker fx:id="inputDueDateEdit" editable="false" layoutX="563.0" layoutY="16.0" promptText="Due Date:" />
       <RadioButton fx:id="inputCompletedEdit" layoutX="760.0" layoutY="16.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="79.0" text="Complete">
          <toggleGroup>
             <ToggleGroup fx:id="isCompletedGroupEdit" />

@@ -5,7 +5,6 @@
 
 package baseline;
 import javafx.collections.FXCollections;
-import java.util.*;
 import javafx.collections.ObservableList;
 import java.io.File;
 
@@ -14,12 +13,10 @@ public class ListOfItems {
         //  This will add an item to a list but first, it will do some checking
         boolean output = false;
 
-        //  First check would see if there is 100 elements in the list
-        //  If there is 100 elements in the list, then it will not add another element
         //  Conducts two checks
-        // First check is the size of the list, while the second check is the description length
+        //  First check is the size of the list, while the second check is the description length
         if(list.size() >= 100 || (description.length() < 1 || description.length() > 256)){
-            //  Switch output to true, then it will prompt the user with an error window
+            //  Switch output to true, then it will prompt the user with an error window when it returns
             output = true;
         }
         //  If both of these checks are passed, then the item will be added to the list
@@ -29,16 +26,6 @@ public class ListOfItems {
 
         //  Returns whatever the output is
         return output;
-    }
-
-    public ObservableList<Item> showAllItems(ObservableList<Item> list){
-        //  Adds all items from a list to show and return that list
-        ObservableList<Item> allItems = FXCollections.observableArrayList();
-        for(int i = 0; i < list.size(); i++){
-            allItems.add(list.get(i));
-        }
-
-        return allItems;
     }
 
     public ObservableList<Item> showCompletedItems(ObservableList<Item> list){
@@ -96,13 +83,16 @@ public class ListOfItems {
 
     public void saveListFile(ObservableList<Item> list, File outputFile){
         //  Uses function from MyFileWriter to write to file
+        MyFileWriter fw = new MyFileWriter();
         String save = writeSaveFile(list);
-
+        fw.writeToFile(save, outputFile);
     }
 
     public void loadSaveFile(ObservableList<Item> list, File inputFile){
         //  Reads in the file, then add each item in that file to the list
         //  Will be done by calling the function in MyFileReader
+        MyFileReader fr = new MyFileReader();
+        fr.scanInputFile(list, inputFile);
     }
 
     private String writeSaveFile(ObservableList<Item> list){
@@ -112,7 +102,8 @@ public class ListOfItems {
         //  Format: Description<>Due Date<>isCompleted (Probably in the form of 0 or 1)
         for(int i = 0; i < list.size(); i++){
             output.append(list.get(i).toString());
-            if(i < list.size()){
+            //  To ensure there isn't an extra line at the end
+            if(i < list.size()-1){
                 output.append("\n");
             }
         }

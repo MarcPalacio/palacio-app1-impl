@@ -15,14 +15,15 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
-import java.io.IOException;
+import java.io.File;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class ToDoListController implements Initializable {
+    //  FXML elements
     @FXML private Button inputDeleteItem;
     @FXML private TableView<Item> itemTable;
     @FXML private TableColumn<Item, String> statusColumn;
@@ -43,6 +44,7 @@ public class ToDoListController implements Initializable {
     @FXML private ToggleGroup isCompletedGroup;
     @FXML private ToggleGroup showItemsGroup;
 
+    // Attributes
     ObservableList<Item> listOfItems = FXCollections.observableArrayList();
     private Scene errorScene;
     private Scene editScene;
@@ -85,12 +87,10 @@ public class ToDoListController implements Initializable {
         this.editController = editController;
     }
 
-
-
     //  All the events to be handled within the controller
     @FXML
     void addItemPressed(ActionEvent event) {
-        //  Calls an instance of two other classes to help
+        //  Calls an instance of ListOfItems to use function that adds element to the list
         ListOfItems helper = new ListOfItems();
 
         //  Gets the information of the input fields and passes them to another function
@@ -144,44 +144,84 @@ public class ToDoListController implements Initializable {
 
     @FXML
     void editItemPressed(ActionEvent event){
-        int index = listOfItems.indexOf(itemTable.getSelectionModel().getSelectedItem());
+        //  Uses the EditItemController to set elements there beforehand to appear there when it switches
         EditItemController editControl = editController.getController();
+
+        //  Gets the index from the selected element in the table
+        int index = listOfItems.indexOf(itemTable.getSelectionModel().getSelectedItem());
 
         // Checks the index to decide where it goes
         if(index >= 0){
+            //  Sets the elements in the EditItemScene to show when the scenes shift
             editControl.setTextInput(listOfItems.get(index).getDescription());
             editControl.setItemList(listOfItems);
             editControl.setIndex(index);
             editControl.setStatus(listOfItems.get(index).getStatus());
             goEditScene(event);
-        } else {
+        } else { // If the user didn't select an element, it will go to the error scene
             goErrorScene(event);
         }
+
+        //  Refreshes the table afterwards
         itemTable.refresh();
     }
 
     @FXML
     void loadListPressed(ActionEvent event) {
-        // Pulls up where all of the lists should be saved and the user can select a list to load
-        // Calls the function in MyFileReader to read in the file and add them to the list
-        // Also will replace the current list to ensure that the two lists don't get mixed together
+        //  Pulls up where all the lists should be saved and the user can select a list to load
+        //  Calls the function in MyFileReader to read in the file and add them to the list
+        //  Also will replace the current list to ensure that the two lists don't get mixed together
+
+        //  Create a FileChooser
+        FileChooser fc = new FileChooser();
+        //  Create an instance of ListOfItems to use functions load file
+        ListOfItems helper = new ListOfItems();
+
+        //  Sets the initial directory to the data folder and accept only .txt files
+        fc.setInitialDirectory(new File("docs\\"));
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt"));
+        File selectedFile = fc.showOpenDialog(null);
+
+        //  Checks if the file is null
+        if(selectedFile != null){
+            // It wipes the current list so that the two lists don't get mixed up
+            helper.deleteAllItems(listOfItems);
+            //  Calls the loadSaveFile function which adds the new elements to the list
+            helper.loadSaveFile(listOfItems, selectedFile);
+        }
     }
 
     @FXML
     void saveListPressed(ActionEvent event) {
         // Calls the function in ListOfItems (saveListFile) and saves data to a .txt file
+
+        //  Create a FileChooser
+        FileChooser fc = new FileChooser();
+        //  Create an instance of ListOfItems to use functions load file
+        ListOfItems helper = new ListOfItems();
+
+        //  Sets the initial directory to the data folder and saves it only as .txt files
+        fc.setInitialDirectory(new File("docs\\"));
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt"));
+        File selectedFile = fc.showSaveDialog(null);
+
+        //  Checks if the file is null
+        if(selectedFile != null){
+            helper.saveListFile(listOfItems, selectedFile);
+        }
     }
 
     @FXML
     void showAllPressed(ActionEvent event) {
-        // Sorts the list to show all items with function in ListOfItems (showAllItems)
+        //  Sorts the list to show all items with function in ListOfItems (showAllItems)
+        //  Originally had a function, but easier to just do it this way
         itemTable.setItems(listOfItems);
         itemTable.refresh();
     }
 
     @FXML
     void showCompletedPressed(ActionEvent event) {
-        // Sorts the list to show all the completed items with function in ListOfItems (showCompletedItems)
+        //  Sorts the list to show all the completed items with function in ListOfItems (showCompletedItems)
         ListOfItems helper = new ListOfItems();
         ObservableList<Item> completedItems = helper.showCompletedItems(listOfItems);
         itemTable.setItems(completedItems);
@@ -190,14 +230,16 @@ public class ToDoListController implements Initializable {
 
     @FXML
     void showIncompletedPressed(ActionEvent event) {
-        // Sorts the list to show all incompleted items with function in ListOfItems (showIncompletedItems)
+        //  Sorts the list to show all incompleted items with function in ListOfItems (showIncompletedItems)
         ListOfItems helper = new ListOfItems();
         ObservableList<Item> incompletedItems = helper.showIncompletedItems(listOfItems);
         itemTable.setItems(incompletedItems);
         itemTable.refresh();
     }
 
+    //  Functions to set elements within this controller
     void setItemList(ObservableList<Item> item){
+        //  Sets this list to a list from outside the function
         listOfItems = item;
     }
 }

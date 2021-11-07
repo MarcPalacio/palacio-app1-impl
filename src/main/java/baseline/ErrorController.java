@@ -14,21 +14,24 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class ErrorController {
+    //  FXML elements
     @FXML private Label labelError;
     @FXML private Button nextButton;
 
+    //  Attributes
     private Scene listScene;
 
-    //  Sets the scene and function to traverse between scenes
+    // Functions for setting scenes
     @FXML
     void setListScene(Scene scene){
+        //  Sets the ToDoList scene
         listScene = scene;
     }
 
     @FXML
     void goListScene(ActionEvent event){
+        //  Switches scenes to the ToDoList Scene
         Stage primaryStage = (Stage)((Node)event.getSource()).getScene().getWindow();
-
         primaryStage.setScene(listScene);
     }
 

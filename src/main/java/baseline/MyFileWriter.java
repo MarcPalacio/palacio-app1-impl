@@ -6,10 +6,21 @@
 package baseline;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class MyFileWriter {
     public void writeToFile(String list, File outputFile){
         // Creates a file writer
-        // Writes to file outputFile with the String
+        try(FileWriter fr = new FileWriter(outputFile)){
+            // Writes to file outputFile with the String
+            fr.write(list);
+        } catch(FileNotFoundException e){ // Exception handling
+            System.out.println("File not found");
+        } catch(IOException a){ // Exception handling
+            System.out.println("An I/O Error occurred");
+            a.printStackTrace();
+        }
     }
 }

@@ -50,6 +50,7 @@ public class Item {
 
     @Override
     public String toString(){
+        //  toString that writes the item in format
         return description + "<>" + date + "<>" + status;
     }
 }

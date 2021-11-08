@@ -106,6 +106,7 @@ public class ToDoListController implements Initializable {
 
         boolean errorMessagePrompt = helper.addItemToList(listOfItems, description, date, isCompleted);
         inputDescription.clear();
+        inputDueDate.setValue(null);
 
         //  If errorMessagePrompt is true, then it will switch scenes to the error message
         if(errorMessagePrompt){
